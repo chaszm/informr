@@ -1,10 +1,10 @@
-import Bottombar from "@/components/shared/Bottombar";
-import LeftSidebar from "@/components/shared/LeftSidebar";
-import RightSidebar from "@/components/shared/RightSidebar";
-import Topbar from "@/components/shared/Topbar";
-import "../globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Bottombar from "@/components/shared/Bottombar"
+import LeftSidebar from "@/components/shared/LeftSidebar"
+import RightSidebar from "@/components/shared/RightSidebar"
+import Topbar from "@/components/shared/Topbar"
+import "../globals.css"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 
 import {
   ClerkProvider,
@@ -12,17 +12,17 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from "@clerk/nextjs";
+} from "@clerk/nextjs"
 
 export const metadata: Metadata = {
   title: "Informr",
   description: "Informr Social Media Application",
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <ClerkProvider>
@@ -30,7 +30,7 @@ export default function RootLayout({
         <body>
           <Topbar />
 
-          <main>
+          <main className="flex flex-row">
             <LeftSidebar />
 
             <section className="main-container">
@@ -44,5 +44,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  );
+  )
 }
