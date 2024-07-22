@@ -1,5 +1,7 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "@/app/globals.css"
+import { dark } from "@clerk/themes"
 
 import {
   ClerkProvider,
@@ -7,22 +9,26 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from "@clerk/nextjs";
+} from "@clerk/nextjs"
 
 export const metadata: Metadata = {
   title: "Informr",
   description: "Informr Social Media Application",
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en">
-        <body>
+        <body className="bg-dark-2">
           <SignedOut></SignedOut>
           <SignedIn>
             <UserButton />
@@ -31,5 +37,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  );
+  )
 }
