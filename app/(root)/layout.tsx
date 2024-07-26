@@ -24,6 +24,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  //Home layout
+
   return (
     <ClerkProvider>
       <html lang="en">

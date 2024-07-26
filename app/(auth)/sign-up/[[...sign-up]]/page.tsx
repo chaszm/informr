@@ -1,5 +1,6 @@
-import { SignUp } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs"
 
 export default function Page() {
-  return <SignUp />;
+  //signing up does not direct to onboarding
+  return <SignUp />
 }

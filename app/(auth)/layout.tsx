@@ -11,6 +11,8 @@ import {
   UserButton,
 } from "@clerk/nextjs"
 
+const inter = Inter({ subsets: ["latin"] })
+
 export const metadata: Metadata = {
   title: "Informr",
   description: "Informr Social Media Application",
@@ -28,13 +30,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        <body className="bg-dark-2">
-          <SignedOut></SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
-        </body>
+        <body className={`${inter.className} bg-dark-1`}>{children}</body>
       </html>
     </ClerkProvider>
   )
