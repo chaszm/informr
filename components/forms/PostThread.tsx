@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { UserValidation } from "@/lib/validations/user"
+
 import * as z from "zod"
 import Image from "next/image"
 import { ChangeEvent, useState } from "react"
@@ -22,7 +22,10 @@ import { Textarea } from "@/components/ui/textarea"
 import "@/app/globals.css"
 import { isBase64Image } from "@/lib/utils"
 import { useUploadThing } from "@/lib/uploadthing"
+
 import { updateUser } from "@/lib/actions/user.actions"
+import { ThreadValidation } from "@/lib/validations/thread"
+import { createThread } from "@/lib/actions/thread.actions"
 
 interface Props {
   user: {
@@ -37,22 +40,59 @@ interface Props {
 }
 
 function PostThread({ userId }: { userId: string }) {
-  const [files, setfiles] = useState<File[]>([])
-  const { startUpload } = useUploadThing("media")
-
   const router = useRouter()
   const pathname = usePathname()
 
   const form = useForm({
-    resolver: zodResolver(UserValidation),
+    resolver: zodResolver(ThreadValidation),
+
     defaultValues: {
-      profile_photo: user?.image || "",
-      name: user?.name || "",
-      username: user?.username || "",
-      bio: user?.bio || "",
+      thread: "",
+      accountId: userId,
     },
   })
-  return <h1>Post Form</h1>
+
+  const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+    // create post button
+    await createThread({
+      text: values.thread,
+      author: userId,
+      communityId: null,
+      path: pathname,
+    })
+
+    router.push("/") //redirect to homepage
+  }
+
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="mt-10 flex flex-col justify-start gap-10"
+      >
+        <FormField
+          control={form.control}
+          name="thread"
+          render={({ field }) => (
+            <FormItem className="flex flex-col w-full gap-3">
+              <FormLabel className="text-base-semibold text-light-2">
+                Content
+              </FormLabel>
+
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <Textarea rows={15} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" className="bg-primary-500">
+          Create Post
+        </Button>
+      </form>
+    </Form>
+  )
 }
 
 export default PostThread
