@@ -1,6 +1,11 @@
 "use client"
 
-import { OrganizationSwitcher, SignedIn, SignOutButton } from "@clerk/nextjs"
+import {
+  OrganizationSwitcher,
+  SignedIn,
+  SignOutButton,
+  useAuth,
+} from "@clerk/nextjs"
 import { sidebarLinks } from "@/constants"
 import Link from "next/link"
 import Image from "next/image"
@@ -9,6 +14,7 @@ import { usePathname, useRouter } from "next/navigation"
 function LeftSidebar() {
   const router = useRouter()
   const path = usePathname()
+  const { userId } = useAuth()
 
   const doSignOut = async () => {
     router.push("/sign-in")
@@ -21,6 +27,8 @@ function LeftSidebar() {
           const isActive =
             (path.includes(link.route) && link.route.length > 1) ||
             path === link.route
+
+          if (link.route === "/profile") link.route = `${link.route}/${userId}`
 
           return (
             <Link
