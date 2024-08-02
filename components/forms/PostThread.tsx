@@ -29,20 +29,13 @@ import { createThread } from "@/lib/actions/thread.actions"
 import { useOrganization } from "@clerk/nextjs"
 
 interface Props {
-  user: {
-    id: string
-    objectId: string
-    username: string
-    name: string
-    bio: string
-    image: string
-  }
-  btnTitle: string
+  userId: string
 }
 
-function PostThread({ userId }: { userId: string }) {
+function PostThread({ userId }: Props) {
   const router = useRouter()
   const pathname = usePathname()
+
   const { organization } = useOrganization()
 
   const form = useForm({

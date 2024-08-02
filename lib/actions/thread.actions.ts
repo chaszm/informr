@@ -161,7 +161,7 @@ export async function deleteThread(id: string, path: string): Promise<void> {
   }
 }
 
-export async function fetchpostById(threadId: string) {
+export async function fetchPostById(threadId: string) {
   connectToDB()
 
   try {

@@ -28,7 +28,7 @@ interface Props {
   isComment?: boolean
 }
 
-const PostCard = ({
+function PostCard({
   id,
   currentUserId,
   parentId,
@@ -38,7 +38,7 @@ const PostCard = ({
   createdAt,
   comments,
   isComment,
-}: Props) => {
+}: Props) {
   return (
     // returns content of specific post
     <article
