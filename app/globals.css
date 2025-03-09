@@ -159,3 +159,7 @@
 .comment-form_btn {
   @apply rounded-3xl bg-primary-500 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
 }
+
+.comment-form_del-btn {
+@apply flex h-24 w-24 items-center gap-4 border-y border-y-dark-4 py-5 max-xs:w-full !important;
+}
