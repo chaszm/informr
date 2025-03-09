@@ -18,6 +18,7 @@ Informr is a cutting-edge social media application designed to connect people an
 - **TailwindCSS:** To style user pages and profiles.
 - **Clerk:** Used for user authentication and account creation.
 
+## Application Layout
 
 ![Account View](components/inf1.PNG)
 *Figure 1: User Account Page*
